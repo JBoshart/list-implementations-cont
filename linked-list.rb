@@ -96,4 +96,44 @@ class LinkedList
      return max
    end
 
+   def sort
+#Notes from assignment:
+     # Call Max?
+     # Temporary storage?
+     # Should I start by finding the Max and moving it to the beginning?
+     # OR should I start by finding the Min and moving it to the end?
+     # Utilize size as a counter as to how many times to execute? Or to tell the traverse when to stop?
+     # Apparently we're not supposed to reassign values, and only reassign pointers
+     current_checking = @head
+     must_move = nil
+
+     while current_checking.next_node != nil
+       if current_checking.value > current_checking.next_node.value
+         must_move = current_checking
+         current_checking = must_move.next_node
+      else
+        current_checking = current_checking.next_node
+      end
+    end
+    return display
+    #Ugh this is non-working garbage. 
+   end
+
+   def reverse
+     current_node = @head
+     next_in_line = @head.next_node
+     previous_node = nil
+
+     until next_in_line.nil?
+       current_node.next_node = previous_node
+       previous_node = current_node
+       current_node = next_in_line
+       next_in_line = next_in_line.next_node
+     end
+
+     current_node.next_node = previous_node
+     @head = current_node
+
+     return display
+   end
 end
